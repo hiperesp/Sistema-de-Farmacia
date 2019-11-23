@@ -15,7 +15,7 @@ public class TelaClientes extends Tela {
 		super(width);
 	}
 	public void addAnonymousElements() {
-		addLabel("Clientes", new Rectangle(32, 40, 240, 80), DefaultOptions.plainFont[0]);
+		addLabel("Clientes", new Rectangle(32, 40, 240, 60), DefaultOptions.boldFont[5]);
 		
 	}
 }

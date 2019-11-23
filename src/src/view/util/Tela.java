@@ -14,7 +14,7 @@ public abstract class Tela extends JPanel {
 	
 	private static final long serialVersionUID = -4352280787426799809L;
 	
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	
 	int width;
 	
@@ -35,7 +35,7 @@ public abstract class Tela extends JPanel {
 		JLabel lblText = new JLabel(labelText);
 		lblText.setBounds(bounds);
 		lblText.setFont(font);
-		lblText.setForeground(DefaultOptions.color[5]);
+		lblText.setForeground(DefaultOptions.color[3]);
 		if(DEBUG) {lblText.setOpaque(true);lblText.setBackground(new Color(0xff0000));}
 		add(lblText);
 		return lblText;
