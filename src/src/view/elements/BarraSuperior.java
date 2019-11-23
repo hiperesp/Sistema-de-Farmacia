@@ -7,10 +7,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import view.util.MotionPanel;
 
-public class BarraSuperior extends JPanel {
+public class BarraSuperior extends MotionPanel {
 
 
 	private static final long serialVersionUID = 3712589741683820517L;
@@ -18,10 +19,11 @@ public class BarraSuperior extends JPanel {
 	ActionListener actionListener;
 	int topInset;
 	
-	public BarraSuperior(ActionListener actionListener, Rectangle position) {
-		this.actionListener = actionListener;
+	public BarraSuperior(JFrame parent, boolean enableMotionPanel, Rectangle position) {
+		super(parent, enableMotionPanel);
+		this.actionListener = (ActionListener)parent;
 		this.setBounds(position);
-		setLayout(new GridLayout(1, 2));
+		setLayout(new GridLayout(1, 3));
 		init("Gabriel Lopes Ferreira Ramos");
 	}
 	JLabel lblUsername = new JLabel("");
@@ -41,13 +43,13 @@ public class BarraSuperior extends JPanel {
 				lblDateTime.setText(dtf.format(now)+indent);
 		    }
 		}, 0, 1000);
-		lblUsername.setForeground(DefaultOptions.color[5]);
+		lblUsername.setForeground(DefaultOptions.color[3]);
 		lblUsername.setText(indent+username);
-		lblUsername.setFont(DefaultOptions.font[0]);
+		lblUsername.setFont(DefaultOptions.plainFont[0]);
 		add(lblUsername);
-		lblDateTime.setForeground(DefaultOptions.color[5]);
+		lblDateTime.setForeground(DefaultOptions.color[3]);
 		lblDateTime.setText(dtf.format(now)+indent);
-		lblDateTime.setFont(DefaultOptions.font[0]);
+		lblDateTime.setFont(DefaultOptions.plainFont[0]);
 		add(lblDateTime);
 	}
 	

@@ -31,22 +31,14 @@ public abstract class Tela extends JPanel {
 		addAnonymousElements();
 	}
 	
-	public JLabel addLabel(String labelText, int x, int y, int width, int height, Font font) {
+	public JLabel addLabel(String labelText, Rectangle bounds, Font font) {
 		JLabel lblText = new JLabel(labelText);
-		lblText.setBounds(new Rectangle(x, y, width, height));
+		lblText.setBounds(bounds);
 		lblText.setFont(font);
 		lblText.setForeground(DefaultOptions.color[5]);
 		if(DEBUG) {lblText.setOpaque(true);lblText.setBackground(new Color(0xff0000));}
 		add(lblText);
 		return lblText;
-	}
-	
-	public JLabel addTitle(String text, int x, int y, int width) {
-		return addLabel(text, x, y, width, 32, DefaultOptions.font[6]);
-	}
-	
-	public JLabel addLabel(String text, int x, int y, int width) {
-		return addLabel(text, x, y, width, 14, DefaultOptions.font[2]);
 	}
 	
 	public abstract void addAnonymousElements();

@@ -5,9 +5,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 import view.elements.BarraLateral;
 import view.elements.BarraSuperior;
+import view.elements.DefaultOptions;
 import view.elements.Tela;
 import view.util.BotaoLateral;
 import view.util.InterfacePadraoConstants;
@@ -15,14 +15,18 @@ import view.util.InterfacePadraoConstants;
 public class Interface extends JFrame implements InterfacePadraoConstants, ActionListener {
 	
 	private static final long serialVersionUID = 6135689381761687013L;
+	
+	private static final int TELA_INICIAL = TELA_CLIENTES;
 
+	private static final boolean FULLSCREEN_MODE = false;
+	
 	public Interface() {
-		boolean fullscreenMode = false;
+		DefaultOptions.init();
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			//javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
 		} catch(Exception e) {}
 		setTitle("Farm");
-		if(fullscreenMode) {
+		if(FULLSCREEN_MODE) {
 		    setSize(Toolkit.getDefaultToolkit().getScreenSize());
 			setExtendedState(MAXIMIZED_BOTH); 
 		} else {
@@ -33,7 +37,6 @@ public class Interface extends JFrame implements InterfacePadraoConstants, Actio
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		setLayout(null);
-		setVisible(true);
 		init();
 		setVisible(true);
 	}
@@ -48,19 +51,18 @@ public class Interface extends JFrame implements InterfacePadraoConstants, Actio
 	BarraSuperior barraSuperior;
 	Tela tela;
 	private void initBarraLateral(){
-		barraLateral = new BarraLateral(this, getHeight()-getInsets().top);
+		barraLateral = new BarraLateral(this, getHeight());
 		add(barraLateral);
 	}
 	private void initBarraSuperior(){
-		barraSuperior = new BarraSuperior(this, new Rectangle(barraLateral.getWidth(), 0, getWidth()-barraLateral.getWidth(), 32));
+		barraSuperior = new BarraSuperior(this, !FULLSCREEN_MODE, new Rectangle(barraLateral.getWidth(), 0, getWidth()-barraLateral.getWidth(), 32));
 		add(barraSuperior);
 	}
 	
 	public void initTela(){
-		int telaInicial = TELA_VENDAS;
-		barraLateral.setFocusButton(telaInicial);
-		tela = new Tela(telaInicial);
-		tela.setBounds(barraLateral.getWidth(), barraSuperior.getHeight(), getWidth()-barraLateral.getWidth(), getHeight()-barraSuperior.getHeight()-getInsets().top);
+		barraLateral.setFocusButton(TELA_INICIAL);
+		tela = new Tela(TELA_INICIAL);
+		tela.setBounds(barraLateral.getWidth(), barraSuperior.getHeight(), getWidth()-barraLateral.getWidth(), getHeight()-barraSuperior.getHeight());
 		add(tela);
 	}
 	
