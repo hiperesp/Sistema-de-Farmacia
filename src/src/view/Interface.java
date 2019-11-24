@@ -13,7 +13,7 @@ import view.util.InterfaceConstants;
 
 public class Interface extends JFrame implements InterfaceConstants, ActionListener {
 
-	private static final boolean FULLSCREEN_MODE = true;
+	private static final boolean FULLSCREEN_MODE = false;
 	
 	private static final int TELA_INICIAL = TELA_CLIENTES;
 	
@@ -30,7 +30,15 @@ public class Interface extends JFrame implements InterfaceConstants, ActionListe
 		    setSize(Toolkit.getDefaultToolkit().getScreenSize());
 			setExtendedState(MAXIMIZED_BOTH); 
 		} else {
-			setSize(new Dimension(1280, 720));
+			//setSize(new Dimension(640, 480));
+			//setSize(new Dimension(720, 480));
+			//setSize(new Dimension(800, 480));
+			//setSize(new Dimension(800, 600));
+			setSize(new Dimension(1024, 600));
+			//setSize(new Dimension(1024, 768));
+			//setSize(new Dimension(1280, 720));
+			//setSize(new Dimension(1366, 768));
+			//setSize(new Dimension(1920, 1080));
 		}
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);

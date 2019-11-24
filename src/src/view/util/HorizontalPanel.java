@@ -1,31 +1,22 @@
 package view.util;
 
-import java.awt.Font;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class HorizontalPanel extends FormPanel {
 
 	private static final long serialVersionUID = 2294818447940132583L;
 
-	public HorizontalPanel(Insets padding) {
+	public HorizontalPanel(Insets padding, Component... components) {
 		super(padding);
 		setLayout(new GridLayout(1, 1, 8, 8));
+		with(components);
 	}
-	public HorizontalPanel() {
-		this(null);
+	public HorizontalPanel(Component...components) {
+		this(null, components);
 	}
-	
-	public VerticalPanel formatVerticalPanel(VerticalPanel verticalPanel) {
-		return verticalPanel;
-	}
-	
-	public JTextField addTextField(String label, Font font) {
-		return formatVerticalPanel(addVerticalPanel()).addTextField(label, font);
-	}
-	public JPasswordField addPasswordField(String label, Font font) {
-		return formatVerticalPanel(addVerticalPanel()).addPasswordField();
+	public HorizontalPanel with(Component...components) {
+		return (HorizontalPanel)super.with(components);
 	}
 }

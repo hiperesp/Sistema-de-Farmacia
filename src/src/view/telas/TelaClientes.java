@@ -1,55 +1,94 @@
 package view.telas;
 
 import java.awt.GridLayout;
-import java.awt.Insets;
-import javax.swing.JLabel;
+
+import javax.swing.JButton;
 import javax.swing.JTextField;
-import view.util.VerticalPanel;
-import view.util.HorizontalPanel;
+
+import view.util.FormElements;
 import view.util.Tela;
+import view.util.VerticalPanel;
 
-public class TelaClientes extends Tela {
-
+public class TelaClientes extends Tela implements FormElements {
 	private static final long serialVersionUID = -6432091958862873077L;
-	
+
 	public TelaClientes() {
 		super(new GridLayout(1, 2));
 	}
 	
-	JTextField formNome, formRG, formCPF,
-			formCEP, formLogradouro, formNumero,
-			formComplemento, formBairro,
-			formMunicipio, formEstado;
+	JTextField formNome, formRG, formCPF, formCEP, formLogradouro, formNumero
+			 , formComplemento, formBairro, formMunicipio, formEstado;
+	JButton formCadastrar;
+	
+	VerticalPanel form;
 	
 	public void addElements() {
-		//lista
-		add(new JLabel(""));
-
-		//formulario
-		Insets padding = new Insets(16, 8, 64, 8);
-		VerticalPanel verticalPanel = new VerticalPanel(padding);
-		addFormElements(verticalPanel);
-		add(verticalPanel);
+		add(createSeparator());
+		add(createForm());
 	}
-	public void addFormElements(VerticalPanel f) {
-		
-		f.addLabel("Cadastrar Cliente", BOLD_FONT[8]);
 
-		formNome = f.addTextField("Nome completo", PLAIN_FONT[4]);
-		HorizontalPanel l1 = f.addHorizontalPanel();
-			formRG = l1.addTextField("RG", PLAIN_FONT[4]);
-			formCPF = l1.addTextField("CPF", PLAIN_FONT[4]);
-		f.addSeparator(20);
-		f.addLabel("Endereço", PLAIN_FONT[5]);
-		HorizontalPanel l2 = f.addHorizontalPanel();
-			formCEP = l2.addTextField("CEP", PLAIN_FONT[4]);
-			formLogradouro = l2.addTextField("Logradouro", PLAIN_FONT[4]);
-		HorizontalPanel l3 = f.addHorizontalPanel();
-			formNumero = l3.addTextField("Número", PLAIN_FONT[4]);
-			formComplemento = l3.addTextField("Complemento", PLAIN_FONT[4]);
-			formBairro = l3.addTextField("Bairro", PLAIN_FONT[4]);
-		HorizontalPanel l4 = f.addHorizontalPanel();
-			formMunicipio = l4.addTextField("Município", PLAIN_FONT[4]);
-			formEstado = l4.addTextField("Estado", PLAIN_FONT[4]);
+	public VerticalPanel createForm() {
+		return form = new VerticalPanel(
+			
+			createLabel("Cadastrar Cliente", BOLD_FONT[8]),
+			
+			createVerticalPanel(
+				createLabel("Nome completo", PLAIN_FONT[4]),
+				formNome = createTextField()
+			),
+			
+			createHorizontalPanel(
+				createVerticalPanel(
+					createLabel("RG", PLAIN_FONT[4]),
+					formRG = createTextField()
+				),
+				createVerticalPanel(
+					createLabel("CPF", PLAIN_FONT[4]),
+					formCPF = createTextField()
+				)
+			),
+			
+			createSeparator(20),
+			
+			createLabel("Endereço", PLAIN_FONT[5]),
+			createHorizontalPanel(
+				createVerticalPanel(
+					createLabel("CEP", PLAIN_FONT[4]),
+					formCEP = createTextField()
+				),
+				createVerticalPanel(
+					createLabel("Logradouro", PLAIN_FONT[4]),
+					formLogradouro = createTextField()
+				)
+			),
+			createHorizontalPanel(
+				createVerticalPanel(
+					createLabel("Número", PLAIN_FONT[4]),
+					formNumero = createTextField()
+				),
+				createVerticalPanel(
+					createLabel("Complemento", PLAIN_FONT[4]),
+					formComplemento = createTextField()
+				),
+				createVerticalPanel(
+					createLabel("Bairro", PLAIN_FONT[4]),
+					formBairro = createTextField()
+				)
+			),
+			createHorizontalPanel(
+				createVerticalPanel(
+					createLabel("Município", PLAIN_FONT[4]),
+					formMunicipio = createTextField()
+				),
+				createVerticalPanel(
+					createLabel("Estado", PLAIN_FONT[4]),
+					formEstado = createTextField()
+				)
+			),
+			
+			createSeparator(20),
+			
+			formCadastrar = createButton("Cadastrar")
+		);
 	}
 }
