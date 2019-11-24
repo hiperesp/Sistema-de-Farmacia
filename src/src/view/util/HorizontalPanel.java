@@ -11,12 +11,12 @@ public class HorizontalPanel extends FormPanel {
 
 	private static final long serialVersionUID = 2294818447940132583L;
 
-	public HorizontalPanel(int columns, Insets padding) {
+	public HorizontalPanel(Insets padding) {
 		super(padding);
-		setLayout(new GridLayout(1, columns, 8, 8));
+		setLayout(new GridLayout(1, 1, 8, 8));
 	}
-	public HorizontalPanel(int columns) {
-		this(columns, null);
+	public HorizontalPanel() {
+		this(null);
 	}
 	
 	public JTextField addTextField(String label, Font font) {

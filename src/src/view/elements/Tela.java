@@ -36,16 +36,13 @@ public class Tela extends JScrollPane implements InterfaceConstants {
 		//SwingUtilities.updateComponentTreeUI(this);
 	}
 	public JPanel getTela(int tela) {
-		int scrollBarSize = ((Integer)javax.swing.UIManager.get("ScrollBar.width")).intValue();
-		int width = getWidth()-scrollBarSize;
-		int height = getHeight()-scrollBarSize;
 		switch(tela) {
-			case TELA_CLIENTES:		return new TelaClientes(width, height);
-			case TELA_ESTOQUE:		return new TelaEstoque(width, height);
-			case TELA_FORNECEDORES: return new TelaFornecedores(width, height);
-			case TELA_FUNCIONARIOS: return new TelaFuncionarios(width, height);
-			case TELA_PRODUTOS:		return new TelaProdutos(width, height);
-			case TELA_VENDAS:		return new TelaVendas(width, height);
+			case TELA_CLIENTES:		return new TelaClientes();
+			case TELA_ESTOQUE:		return new TelaEstoque();
+			case TELA_FORNECEDORES: return new TelaFornecedores();
+			case TELA_FUNCIONARIOS: return new TelaFuncionarios();
+			case TELA_PRODUTOS:		return new TelaProdutos();
+			case TELA_VENDAS:		return new TelaVendas();
 		}
 		return null;
 	}

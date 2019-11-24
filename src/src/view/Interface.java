@@ -30,7 +30,7 @@ public class Interface extends JFrame implements InterfaceConstants, ActionListe
 		    setSize(Toolkit.getDefaultToolkit().getScreenSize());
 			setExtendedState(MAXIMIZED_BOTH); 
 		} else {
-			setSize(new Dimension(1024, 600));
+			setSize(new Dimension(1280, 720));
 		}
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);

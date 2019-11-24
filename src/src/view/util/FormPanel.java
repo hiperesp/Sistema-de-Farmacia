@@ -9,7 +9,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -30,16 +29,6 @@ public class FormPanel extends JPanel implements FormItemConstants, DefaultOptio
 	
 	public JLabel addLabel(String labelText, Font font) {
 		return (JLabel) add(formatLabel(new JLabel(labelText), font));
-	}
-	public JSeparator addSeparator(int height) {
-		return (JSeparator) add(formatSeparator(new FormSeparator(), height));
-	}
-	public JSeparator addSeparator() {
-		return addSeparator(10);
-	}
-	private JSeparator formatSeparator(JSeparator separator, int height) {
-		separator.setMaximumSize(new Dimension(MAX_WIDTH, height));
-		return separator;
 	}
 	private JLabel formatLabel(JLabel label, Font font) {
 		label.setFont(font);
@@ -79,8 +68,8 @@ public class FormPanel extends JPanel implements FormItemConstants, DefaultOptio
 		addLabel(label, font);
 		return addPasswordField();
 	}
-	public HorizontalPanel addHorizontalPanel(int cols) {
-		return (HorizontalPanel) add(formatHorizontalPanel(new HorizontalPanel(cols)));
+	public HorizontalPanel addHorizontalPanel() {
+		return (HorizontalPanel) add(formatHorizontalPanel(new HorizontalPanel()));
 	}
 	public VerticalPanel addVerticalPanel() {
 		return (VerticalPanel) add(formatVerticalPanel(new VerticalPanel()));
