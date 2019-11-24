@@ -3,7 +3,6 @@ package view.util;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
-
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -19,12 +18,14 @@ public class HorizontalPanel extends FormPanel {
 		this(null);
 	}
 	
+	public VerticalPanel formatVerticalPanel(VerticalPanel verticalPanel) {
+		return verticalPanel;
+	}
+	
 	public JTextField addTextField(String label, Font font) {
-		VerticalPanel verticalPanel = addVerticalPanel();
-		return verticalPanel.addTextField(label, font);
+		return formatVerticalPanel(addVerticalPanel()).addTextField(label, font);
 	}
 	public JPasswordField addPasswordField(String label, Font font) {
-		VerticalPanel verticalPanel = addVerticalPanel();
-		return verticalPanel.addPasswordField();
+		return formatVerticalPanel(addVerticalPanel()).addPasswordField();
 	}
 }
