@@ -1,8 +1,10 @@
 package view.telas;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import view.util.VerticalPanel;
 import view.util.HorizontalPanel;
@@ -34,6 +36,8 @@ public class TelaClientes extends Tela {
 		HorizontalPanel l1 = f.addHorizontalPanel();
 			formRG = l1.addTextField("RG", PLAIN_FONT[4]);
 			formCPF = l1.addTextField("CPF", PLAIN_FONT[4]);
+		f.addSeparator(20);
+		f.addLabel("Endereço", PLAIN_FONT[5]);
 		HorizontalPanel l2 = f.addHorizontalPanel();
 			formRG = l2.addTextField("RG", PLAIN_FONT[4]);
 			formCPF = l2.addTextField("CPF", PLAIN_FONT[4]);
