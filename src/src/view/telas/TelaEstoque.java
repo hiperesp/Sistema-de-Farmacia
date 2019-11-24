@@ -8,7 +8,7 @@ public class TelaEstoque extends JPanel {
 
 	private static final long serialVersionUID = -6432091958862873077L;
 	
-	public TelaEstoque(int width) {
+	public TelaEstoque(int width, int height) {
 		super();
 		init();
 	}

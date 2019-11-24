@@ -5,27 +5,29 @@ import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import view.util.BotaoLateral;
-import view.util.InterfacePadraoConstants;
+import view.util.DefaultOptions;
+import view.util.InterfaceConstants;
 
-public class BarraLateral extends JPanel implements InterfacePadraoConstants {
+public class BarraLateral extends JPanel implements InterfaceConstants {
 	
 	private static final long serialVersionUID = -7084727490763907158L;
 	
 	BotaoLateral[] botoesLaterais;
 	
-	private int buttonHeight, height;
+	private int buttonHeight, height, y;
 	
-	public BarraLateral(ActionListener actionListener, int height) {
+	public BarraLateral(ActionListener actionListener, int y, int height) {
 		super();
+		this.y = y;
 		this.height = height;
 		setupBotoesLateral(actionListener);
 		addBotoesLateral();
 		setupBarraLateral();
 	}
 	public void setupBarraLateral() {
-		setBackground(DefaultOptions.color[0]);
+		setBackground(DefaultOptions.COLOR[0]);
 		setLayout(new GridLayout(botoesLaterais.length, 0));
-		setBounds(new Rectangle(0, 0, buttonHeight, height));
+		setBounds(new Rectangle(0, y, buttonHeight, height));
 	}
 	public void setupBotoesLateral(ActionListener actionListener) {
 		botoesLaterais = new BotaoLateral[] {

@@ -1,21 +1,19 @@
 package view.telas;
 
+import java.awt.Dimension;
 import java.awt.Rectangle;
 
-import view.elements.DefaultOptions;
 import view.util.Tela;
 
 public class TelaClientes extends Tela {
 
 	private static final long serialVersionUID = -6432091958862873077L;
 	
-	int width;
-	
-	public TelaClientes(int width) {
-		super(width);
+	public TelaClientes(int width, int height) {
+		super(new Dimension(width, height));
 	}
-	public void addAnonymousElements() {
-		addLabel("Clientes", new Rectangle(32, 40, 240, 60), DefaultOptions.boldFont[5]);
-		
+	public void addElements() {
+		Dimension dimension = getPreferredSize();
+		addLabel("Cadastrar Cliente", new Rectangle(64, 32, dimension.width, 64), BOLD_FONT[5]);
 	}
 }

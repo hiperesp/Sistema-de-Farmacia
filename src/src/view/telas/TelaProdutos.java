@@ -8,7 +8,7 @@ public class TelaProdutos extends JPanel {
 
 	private static final long serialVersionUID = -6432091958862873077L;
 	
-	public TelaProdutos(int width) {
+	public TelaProdutos(int width, int height) {
 		super();
 		init();
 	}

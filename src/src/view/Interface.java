@@ -7,23 +7,23 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import view.elements.BarraLateral;
 import view.elements.BarraSuperior;
-import view.elements.DefaultOptions;
 import view.elements.Tela;
 import view.util.BotaoLateral;
-import view.util.InterfacePadraoConstants;
+import view.util.InterfaceConstants;
 
-public class Interface extends JFrame implements InterfacePadraoConstants, ActionListener {
+public class Interface extends JFrame implements InterfaceConstants, ActionListener {
+
+	private static final boolean FULLSCREEN_MODE = true;
+	
+	private static final int TELA_INICIAL = TELA_CLIENTES;
 	
 	private static final long serialVersionUID = 6135689381761687013L;
 	
-	private static final int TELA_INICIAL = TELA_CLIENTES;
-
-	private static final boolean FULLSCREEN_MODE = false;
-	
 	public Interface() {
-		DefaultOptions.init();
 		try {
-			//javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+			/*int themeIndex = -1;
+			if(themeIndex==-1) InterfaceConstants.setTheme(javax.swing.UIManager.getSystemLookAndFeelClassName());
+			else InterfaceConstants.setTheme(InterfaceConstants.getThemes()[themeIndex].getClassName());*/
 		} catch(Exception e) {}
 		setTitle("Farm");
 		if(FULLSCREEN_MODE) {
@@ -47,22 +47,22 @@ public class Interface extends JFrame implements InterfacePadraoConstants, Actio
 		initTela();
 	}
 	
-	BarraLateral barraLateral;
-	BarraSuperior barraSuperior;
+	public BarraLateral barraLateral;
+	public BarraSuperior barraSuperior;
 	Tela tela;
+	
 	private void initBarraLateral(){
-		barraLateral = new BarraLateral(this, getHeight());
+		barraLateral = new BarraLateral(this, 32, getHeight()-32);
 		add(barraLateral);
 	}
 	private void initBarraSuperior(){
-		barraSuperior = new BarraSuperior(this, !FULLSCREEN_MODE, new Rectangle(barraLateral.getWidth(), 0, getWidth()-barraLateral.getWidth(), 32));
+		barraSuperior = new BarraSuperior(this, !FULLSCREEN_MODE, new Rectangle(0, 0, getWidth(), 32));
 		add(barraSuperior);
 	}
 	
 	public void initTela(){
 		barraLateral.setFocusButton(TELA_INICIAL);
-		tela = new Tela(TELA_INICIAL);
-		tela.setBounds(barraLateral.getWidth(), barraSuperior.getHeight(), getWidth()-barraLateral.getWidth(), getHeight()-barraSuperior.getHeight());
+		tela = new Tela(TELA_INICIAL, new Rectangle(barraLateral.getWidth(), barraSuperior.getHeight(), getWidth()-barraLateral.getWidth(), getHeight()-barraSuperior.getHeight()));
 		add(tela);
 	}
 	
@@ -77,6 +77,22 @@ public class Interface extends JFrame implements InterfacePadraoConstants, Actio
 			int telaCode = ((BotaoLateral)source).code;
 			barraLateral.setFocusButton(telaCode);
 			setTela(telaCode);
+		} else if(source==barraSuperior.toggleMenu) {
+			Rectangle telaBounds = tela.getBounds();
+			if(barraLateral.isVisible()) {
+				barraLateral.setVisible(false);
+				telaBounds.x = 0;
+				telaBounds.width = getWidth();
+			} else {
+				barraLateral.setVisible(true);
+				telaBounds.x = barraLateral.getWidth();
+				telaBounds.width = getWidth()-barraLateral.getWidth();
+			}
+			tela.setBounds(telaBounds);
+		} else if(source==barraSuperior.closeButton) {
+			System.exit(0);
+		} else if(source==barraSuperior.minimizeButton) {
+			setState(ICONIFIED);
 		}
 	}
 }

@@ -1,7 +1,6 @@
 package view.util;
 
 import java.awt.event.ActionListener;
-import view.elements.DefaultOptions;
 
 public class BotaoLateral extends ButtonImage {
 
@@ -22,9 +21,9 @@ public class BotaoLateral extends ButtonImage {
 	}
 	public void setFocused(boolean focus) {
 		if(focus) {
-			setBackground(DefaultOptions.color[2]);
+			setBackground(DefaultOptions.COLOR[2]);
 		} else {
-			setBackground(DefaultOptions.color[0]);
+			setBackground(DefaultOptions.COLOR[0]);
 		}
 		
 	}
