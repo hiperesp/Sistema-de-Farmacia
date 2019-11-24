@@ -14,6 +14,5 @@ public class TelaProdutos extends Tela {
 	}
 	public void addElements() {
 		Dimension dimension = getPreferredSize();
-		addLabel("Cadastrar Produto", new Rectangle(64, 32, dimension.width, 64), BOLD_FONT[5]);
 	}
 }

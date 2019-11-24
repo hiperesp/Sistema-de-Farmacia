@@ -49,6 +49,7 @@ public interface DefaultOptions {
 			new Color(0x8000ff),
 			new Color(0x400080),
 			new Color(0x200040),
-			new Color(0xffffff)
+			new Color(0xffffff),
+			new Color(0x000000),
 	};
 }

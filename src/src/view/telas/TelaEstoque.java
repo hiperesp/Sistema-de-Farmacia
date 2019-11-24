@@ -14,6 +14,5 @@ public class TelaEstoque extends Tela {
 	}
 	public void addElements() {
 		Dimension dimension = getPreferredSize();
-		addLabel("Cadastrar Estoque", new Rectangle(64, 32, dimension.width, 64), BOLD_FONT[5]);
 	}
 }

@@ -19,7 +19,6 @@ public class Tela extends JScrollPane implements InterfaceConstants {
 	
 	public Tela() {
 		super();
-		//setLayout(null);
 		setBorder(BorderFactory.createEmptyBorder());
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
