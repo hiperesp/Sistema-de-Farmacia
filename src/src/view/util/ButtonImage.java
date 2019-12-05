@@ -21,9 +21,10 @@ public class ButtonImage extends JButton {
 		setBorder(null);
 		setOpaque(false);
 		setBackground(new Color(0, 0, 0, 0));
+		setFocusable(false);
 	}
 	private void updateIcon() {
-		setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH)));
+		setIcon(new ImageIcon(image.getScaledInstance(width/4*3, height/4*3, Image.SCALE_SMOOTH)));
 	}
 	public void setWidth(int width) {
 		this.width = width;

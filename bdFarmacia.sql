@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Nov-2019 às 13:56
--- Versão do servidor: 10.1.26-MariaDB
--- PHP Version: 7.0.23
+-- Tempo de geração: 05-Dez-2019 às 01:18
+-- Versão do servidor: 10.4.6-MariaDB
+-- versão do PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bdfarmacia`
+-- Banco de dados: `bdfarmacia`
 --
 
 -- --------------------------------------------------------
@@ -42,19 +42,12 @@ CREATE TABLE `tbcliente` (
   `ufCliente` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `tbfornecedor`
+-- Extraindo dados da tabela `tbcliente`
 --
 
-CREATE TABLE `tbfornecedor` (
-  `idFornecedor` int(11) NOT NULL,
-  `nomeFornecedor` varchar(255) NOT NULL,
-  `cnpjFornecedor` varchar(14) NOT NULL,
-  `endFornecedor` varchar(50) NOT NULL,
-  `telFornecedor` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tbcliente` (`idCliente`, `nomeCliente`, `cpfCliente`, `rgCliente`, `logradouroCliente`, `numCliente`, `complCliente`, `bairroCliente`, `cidadeCliente`, `cepCliente`, `ufCliente`) VALUES
+(74, 'Irineu Da Silva', '12345678910', '121231890', 'Rua Irineu', 12313, 'Blabla', 'Guaianazes', 'São Paulo', '08431590', 'SP');
 
 -- --------------------------------------------------------
 
@@ -65,32 +58,29 @@ CREATE TABLE `tbfornecedor` (
 CREATE TABLE `tbfuncionario` (
   `idFuncionario` int(11) NOT NULL,
   `nomeFuncionario` varchar(255) NOT NULL,
+  `senha` varchar(32) NOT NULL,
   `cpfFuncionario` varchar(11) NOT NULL,
   `rgFuncionario` varchar(11) NOT NULL,
   `contaBancoFuncionario` varchar(8) NOT NULL,
   `agenciaFuncionario` varchar(6) NOT NULL,
   `nomeBancoFuncionario` varchar(20) NOT NULL,
-  `logradouroFuncionario` varchar(255) NOT NULL,
-  `numFuncionario` int(11) NOT NULL,
-  `complFuncionario` varchar(32) NOT NULL,
-  `bairroFuncionario` varchar(64) NOT NULL,
-  `cidadeFuncionario` varchar(128) NOT NULL,
-  `cepFuncionario` varchar(8) NOT NULL,
-  `ufFuncionario` varchar(2) NOT NULL
+  `logradouroFuncionario` varchar(255) NOT NULL DEFAULT '',
+  `numFuncionario` int(11) NOT NULL DEFAULT 0,
+  `complFuncionario` varchar(32) NOT NULL DEFAULT '',
+  `bairroFuncionario` varchar(64) NOT NULL DEFAULT '',
+  `cidadeFuncionario` varchar(128) NOT NULL DEFAULT '',
+  `cepFuncionario` varchar(8) NOT NULL DEFAULT '',
+  `ufFuncionario` varchar(2) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `tbitemvenda`
+-- Extraindo dados da tabela `tbfuncionario`
 --
 
-CREATE TABLE `tbitemvenda` (
-  `codigoItemVenda` int(11) NOT NULL,
-  `codigoProdutoItemVenda` int(11) NOT NULL,
-  `quantidadeItemVenda` int(11) NOT NULL,
-  `codigoVendaItemVenda` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tbfuncionario` (`idFuncionario`, `nomeFuncionario`, `senha`, `cpfFuncionario`, `rgFuncionario`, `contaBancoFuncionario`, `agenciaFuncionario`, `nomeBancoFuncionario`, `logradouroFuncionario`, `numFuncionario`, `complFuncionario`, `bairroFuncionario`, `cidadeFuncionario`, `cepFuncionario`, `ufFuncionario`) VALUES
+(1, 'nome', 'e10adc3949ba59abbe56e057f20f883e', 'cpf', 'rg', 'conta', 'agenci', 'nomebanco', 'logradouro', 10, 'compl', 'bairro', 'cidade', 'cep', 'uf'),
+(3, 'Nome opleto', 'e10adc3949ba59abbe56e057f20f883e', '12345623', '123456789', '12345', '123456', 'Banco do Barril', 'Rua Nomeada', 140, 'Bacate', 'Guaianazes', 'São Paulo', '01234567', 'SP'),
+(4, 'Irineu Funcionário', 'c6883b2cf5d5dfa84d3be27da45f41f3', '89189189189', '15618989189', '89189189', '891891', 'Banco do Barril', '', 0, '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -101,44 +91,16 @@ CREATE TABLE `tbitemvenda` (
 CREATE TABLE `tbprodutos` (
   `idProdutos` int(11) NOT NULL,
   `nomeProdutos` varchar(255) NOT NULL,
-  `descricaoProdutos` varchar(100) NOT NULL
+  `descricaoProdutos` varchar(100) NOT NULL,
+  `valorProduto` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `tbtelefonecliente`
+-- Extraindo dados da tabela `tbprodutos`
 --
 
-CREATE TABLE `tbtelefonecliente` (
-  `idTelefoneCliente` int(11) NOT NULL,
-  `nomeTelefoneCliente` varchar(255) NOT NULL,
-  `TelefoneCliente` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tbtelefonefornecedor`
---
-
-CREATE TABLE `tbtelefonefornecedor` (
-  `idTelefoneFornecedor` int(11) NOT NULL,
-  `nomeTelefoneFornecedor` varchar(255) NOT NULL,
-  `TelefoneFornecedor` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tbtelefonefuncionario`
---
-
-CREATE TABLE `tbtelefonefuncionario` (
-  `idTelefoneFuncionario` int(11) NOT NULL,
-  `nomeTelefoneFuncionario` varchar(255) NOT NULL,
-  `TelefoneFuncionario` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tbprodutos` (`idProdutos`, `nomeProdutos`, `descricaoProdutos`, `valorProduto`) VALUES
+(1, 'Chocolate sem Cacau', 'É muito bom, não tem Cacau nem açucar', '300.00');
 
 -- --------------------------------------------------------
 
@@ -148,127 +110,75 @@ CREATE TABLE `tbtelefonefuncionario` (
 
 CREATE TABLE `tbvenda` (
   `codigoVenda` int(11) NOT NULL,
-  `funcionarioVenda` int(11) NOT NULL,
   `clienteVenda` int(11) NOT NULL,
-  `valortotalVenda` decimal(10,2) NOT NULL,
-  `dataVenda` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `produtoVenda` int(11) NOT NULL,
+  `quantidadeVenda` int(11) NOT NULL,
+  `valorTotalVenda` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Extraindo dados da tabela `tbvenda`
+--
+
+INSERT INTO `tbvenda` (`codigoVenda`, `clienteVenda`, `produtoVenda`, `quantidadeVenda`, `valorTotalVenda`) VALUES
+(1, 74, 1, 10, '3000.00'),
+(2, 74, 1, 1, '300.00');
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `tbcliente`
+-- Índices para tabela `tbcliente`
 --
 ALTER TABLE `tbcliente`
   ADD PRIMARY KEY (`idCliente`);
 
 --
--- Indexes for table `tbfornecedor`
---
-ALTER TABLE `tbfornecedor`
-  ADD PRIMARY KEY (`idFornecedor`);
-
---
--- Indexes for table `tbfuncionario`
+-- Índices para tabela `tbfuncionario`
 --
 ALTER TABLE `tbfuncionario`
   ADD PRIMARY KEY (`idFuncionario`);
 
 --
--- Indexes for table `tbitemvenda`
---
-ALTER TABLE `tbitemvenda`
-  ADD PRIMARY KEY (`codigoItemVenda`);
-
---
--- Indexes for table `tbprodutos`
+-- Índices para tabela `tbprodutos`
 --
 ALTER TABLE `tbprodutos`
   ADD PRIMARY KEY (`idProdutos`);
 
 --
--- Indexes for table `tbtelefonecliente`
---
-ALTER TABLE `tbtelefonecliente`
-  ADD PRIMARY KEY (`idTelefoneCliente`);
-
---
--- Indexes for table `tbtelefonefornecedor`
---
-ALTER TABLE `tbtelefonefornecedor`
-  ADD PRIMARY KEY (`idTelefoneFornecedor`);
-
---
--- Indexes for table `tbtelefonefuncionario`
---
-ALTER TABLE `tbtelefonefuncionario`
-  ADD PRIMARY KEY (`idTelefoneFuncionario`);
-
---
--- Indexes for table `tbvenda`
+-- Índices para tabela `tbvenda`
 --
 ALTER TABLE `tbvenda`
   ADD PRIMARY KEY (`codigoVenda`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `tbcliente`
+-- AUTO_INCREMENT de tabela `tbcliente`
 --
 ALTER TABLE `tbcliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT for table `tbfornecedor`
---
-ALTER TABLE `tbfornecedor`
-  MODIFY `idFornecedor` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbfuncionario`
+-- AUTO_INCREMENT de tabela `tbfuncionario`
 --
 ALTER TABLE `tbfuncionario`
-  MODIFY `idFuncionario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idFuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbitemvenda`
---
-ALTER TABLE `tbitemvenda`
-  MODIFY `codigoItemVenda` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbprodutos`
+-- AUTO_INCREMENT de tabela `tbprodutos`
 --
 ALTER TABLE `tbprodutos`
-  MODIFY `idProdutos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProdutos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tbtelefonecliente`
---
-ALTER TABLE `tbtelefonecliente`
-  MODIFY `idTelefoneCliente` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbtelefonefornecedor`
---
-ALTER TABLE `tbtelefonefornecedor`
-  MODIFY `idTelefoneFornecedor` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbtelefonefuncionario`
---
-ALTER TABLE `tbtelefonefuncionario`
-  MODIFY `idTelefoneFuncionario` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbvenda`
+-- AUTO_INCREMENT de tabela `tbvenda`
 --
 ALTER TABLE `tbvenda`
-  MODIFY `codigoVenda` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codigoVenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

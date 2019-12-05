@@ -5,6 +5,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import view.elements.BarraLateral;
 import view.elements.BarraSuperior;
 import view.elements.Tela;
@@ -13,10 +15,12 @@ import view.util.InterfaceConstants;
 
 public class Interface extends JFrame implements InterfaceConstants, ActionListener {
 
-	private static final boolean FULLSCREEN_MODE = false;
+	private static final boolean FULLSCREEN_MODE = true;
 	
-	private static final int TELA_INICIAL = TELA_CLIENTES;
+	private static final int TELA_INICIAL = TELA_VENDAS;
 	
+	public boolean logged = false;
+
 	private static final long serialVersionUID = 6135689381761687013L;
 	
 	public Interface() {
@@ -34,9 +38,9 @@ public class Interface extends JFrame implements InterfaceConstants, ActionListe
 			//setSize(new Dimension(720, 480));
 			//setSize(new Dimension(800, 480));
 			//setSize(new Dimension(800, 600));
-			setSize(new Dimension(1024, 600));
+			//setSize(new Dimension(1024, 600));
 			//setSize(new Dimension(1024, 768));
-			//setSize(new Dimension(1280, 720));
+			setSize(new Dimension(1280, 720));
 			//setSize(new Dimension(1366, 768));
 			//setSize(new Dimension(1920, 1080));
 		}
@@ -69,8 +73,7 @@ public class Interface extends JFrame implements InterfaceConstants, ActionListe
 	}
 	
 	public void initTela(){
-		barraLateral.setFocusButton(TELA_INICIAL);
-		tela = new Tela(TELA_INICIAL, new Rectangle(barraLateral.getWidth(), barraSuperior.getHeight(), getWidth()-barraLateral.getWidth(), getHeight()-barraSuperior.getHeight()));
+		tela = new Tela(TELA_LOGIN, new Rectangle(barraLateral.getWidth(), barraSuperior.getHeight(), getWidth()-barraLateral.getWidth(), getHeight()-barraSuperior.getHeight()), this);
 		add(tela);
 	}
 	
@@ -83,8 +86,19 @@ public class Interface extends JFrame implements InterfaceConstants, ActionListe
 		Object source = arg0.getSource();
 		if(BotaoLateral.class.isInstance(source)) {
 			int telaCode = ((BotaoLateral)source).code;
-			barraLateral.setFocusButton(telaCode);
-			setTela(telaCode);
+			if(telaCode>FEATURES) {
+				switch(telaCode) {
+				case AUMENTAR_TELA: tela.getTelaAtual().switchWidth(); break;
+				case LOGOUT: logout(); break;
+				}
+			} else if(telaCode>TELA) {
+				if(logged) {
+					barraLateral.setFocusButton(telaCode);
+					setTela(telaCode);
+				} else {
+					JOptionPane.showMessageDialog(this, "Faça o login antes de fazer isso.");
+				}
+			}
 		} else if(source==barraSuperior.toggleMenu) {
 			Rectangle telaBounds = tela.getBounds();
 			if(barraLateral.isVisible()) {
@@ -102,5 +116,15 @@ public class Interface extends JFrame implements InterfaceConstants, ActionListe
 		} else if(source==barraSuperior.minimizeButton) {
 			setState(ICONIFIED);
 		}
+	}
+	public void loginOk() {
+		logged = true;
+		barraLateral.setFocusButton(TELA_INICIAL);
+		setTela(TELA_INICIAL);
+	}
+	public void logout() {
+		logged = false;
+		barraLateral.setFocusButton(null);
+		setTela(TELA_LOGIN);
 	}
 }

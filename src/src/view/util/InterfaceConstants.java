@@ -12,6 +12,11 @@ public interface InterfaceConstants {
 	public static final int TELA_FUNCIONARIOS = TELA+4;
 	public static final int TELA_FORNECEDORES = TELA+5;
 	public static final int TELA_PRODUTOS = TELA+6;
+	public static final int TELA_LOGIN = TELA+7;
+	public static final int FEATURES = 0x80;
+	public static final int AUMENTAR_TELA = FEATURES+1;
+	public static final int LOGOUT = FEATURES+2;
+	public static final int SEPARADOR = 0xffffff;
 	public static LookAndFeelInfo[] getThemes() {
 		return UIManager.getInstalledLookAndFeels();
 	}

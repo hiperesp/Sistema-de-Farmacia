@@ -26,17 +26,26 @@ public class BarraLateral extends JPanel implements InterfaceConstants {
 	}
 	public void setupBarraLateral() {
 		setBackground(DefaultOptions.COLOR[0]);
-		setLayout(new GridLayout(botoesLaterais.length, 0));
+		GridLayout layout = new GridLayout(botoesLaterais.length, 0);
+		layout.setHgap(0);
+		layout.setVgap(0);
+		setLayout(layout);
 		setBounds(new Rectangle(0, y, buttonHeight, height));
 	}
 	public void setupBotoesLateral(ActionListener actionListener) {
 		botoesLaterais = new BotaoLateral[] {
 				new BotaoLateral(TELA_CLIENTES, "Clientes", "assets/icon-cliente.png", actionListener),
 				new BotaoLateral(TELA_VENDAS, "Vendas", "assets/icon-vendas.png", actionListener),
-				new BotaoLateral(TELA_ESTOQUE, "Estoque", "assets/icon-estoque.png", actionListener),
-				new BotaoLateral(TELA_FUNCIONARIOS, "Funcion√°rios", "assets/icon-funcionario.png", actionListener),
-				new BotaoLateral(TELA_FORNECEDORES, "Fornecedores", "assets/icon-fornecedor.png", actionListener),
+				//new BotaoLateral(TELA_ESTOQUE, "Estoque", "assets/icon-estoque.png", actionListener),
+				new BotaoLateral(TELA_FUNCIONARIOS, "Funcion·rios", "assets/icon-funcionario.png", actionListener),
+				//new BotaoLateral(TELA_FORNECEDORES, "Fornecedores", "assets/icon-fornecedor.png", actionListener),
 				new BotaoLateral(TELA_PRODUTOS, "Produtos", "assets/icon-produto.png", actionListener),
+				new BotaoLateral(SEPARADOR, "", "assets/icon-separador.png"),
+				new BotaoLateral(SEPARADOR, "", "assets/icon-separador.png"),
+				new BotaoLateral(SEPARADOR, "", "assets/icon-separador.png"),
+				new BotaoLateral(SEPARADOR, "", "assets/icon-separador.png"),
+				new BotaoLateral(LOGOUT, "Sair", "assets/icon-logout.png", actionListener),
+				new BotaoLateral(AUMENTAR_TELA, "Aumentar/Diminuir Tela", "assets/icon-fullscreen.png", actionListener),
 		};
 	}
 	public void addBotoesLateral() {

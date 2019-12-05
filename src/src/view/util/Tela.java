@@ -16,7 +16,7 @@ public abstract class Tela extends JPanel implements DefaultOptions {
 	public Tela(LayoutManager layoutManager, Insets padding) {
 		super();
 		if(padding==null) {
-			padding = new Insets(32, 64, 32, 64);
+			padding = new Insets(32, 32, 32, 64);
 		}
 		setBorder(BorderFactory.createEmptyBorder(padding.top, padding.left, padding.bottom, padding.right));
 		if(layoutManager==null) {
@@ -63,5 +63,9 @@ public abstract class Tela extends JPanel implements DefaultOptions {
 		height+= getInsets().top+getInsets().bottom;
 		
 		setDimension(new Dimension(width, height));
+	}
+	
+	public void switchWidth() {
+		
 	}
 }
